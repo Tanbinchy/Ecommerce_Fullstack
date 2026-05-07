@@ -2,6 +2,7 @@ const express = require("express");
 const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const mongoose = require("mongoose");
 const { xss } = require("express-xss-sanitizer");
 const rateLimit = require("express-rate-limit");
 const usersRouter = require("./routers/userRouter");
@@ -76,8 +77,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "..", "public", "images")));
 
 app.get("/api/health", (req, res) => {
-  res.status(200).json({ success: true, message: "API is healthy" });
+  const dbStates = ["disconnected", "connected", "connecting", "disconnecting"];
+  res.status(200).json({
+    success: true,
+    message: "API is healthy",
+    database: dbStates[mongoose.connection.readyState] || "unknown",
+  });
 });
+
+app.use((req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    return next(
+      createError(
+        503,
+        "Database connection is not ready. Check MONGODB_URL and Atlas Network Access.",
+      ),
+    );
+  }
+
+  next();
+});
+
 app.use("/api/users", usersRouter);
 app.use("/api/seed", seedRouter);
 app.use("/api/auth", authRouter);

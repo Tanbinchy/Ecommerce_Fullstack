@@ -2,9 +2,12 @@ require("dotenv").config({ quiet: true });
 
 const serverPort = process.env.PORT || process.env.SERVER_PORT || 3001;
 const mongodbURL = process.env.MONGODB_URL;
+const fallbackUserIMG = "https://placehold.co/600x600/f8fafc/0f172a?text=MyStore";
+const envDefaultUserIMG = process.env.DEFAULT_USER_IMG;
 const defaultUserIMG =
-  process.env.DEFAULT_USER_IMG ||
-  "https://placehold.co/600x600/f8fafc/0f172a?text=MyStore";
+  envDefaultUserIMG && /^https?:\/\//i.test(envDefaultUserIMG)
+    ? envDefaultUserIMG
+    : fallbackUserIMG;
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
 const smtpUsername = process.env.SMTP_USERNAME;
 const smtpPassword = process.env.SMTP_PASSWORD;

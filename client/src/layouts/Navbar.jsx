@@ -56,9 +56,6 @@ const Navbar = () => {
               <NavLink to="/login" className={navClass}>
                 Login
               </NavLink>
-              <NavLink to="/admin/login" className={navClass}>
-                Admin
-              </NavLink>
               <NavLink to="/register" className={navClass}>
                 Register
               </NavLink>
@@ -134,13 +131,6 @@ const Navbar = () => {
               <>
                 <NavLink to="/login" className={navClass} onClick={closeMenu}>
                   Login
-                </NavLink>
-                <NavLink
-                  to="/admin/login"
-                  className={navClass}
-                  onClick={closeMenu}
-                >
-                  Admin
                 </NavLink>
                 <NavLink
                   to="/register"
