@@ -14,7 +14,6 @@ _|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 - Seed API, if you set `SEED_SECRET`: `http://localhost:3001/api/seed/demo?key=YOUR_SEED_SECRET`
 - Production demo seed: `https://your-render-service.onrender.com/api/seed/demo?key=YOUR_SEED_SECRET`
 - Admin login route: `/admin/login`
-- Admin seed account: `admin@mystore.com` / `Admin@1234`
 
 _||||||||||||||||||||||||||||||||||||||| BACK END NOTE |||||||||||||||||||||||||||||||||||||||_
 _|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||_
